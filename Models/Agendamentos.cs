@@ -6,9 +6,12 @@ public class Agendamentos
 {
     [Required]
     public int Id { get; set; }
+
     [Required]
     public DateTime Horario { get; set; }
+
     public bool? Confirmado { get; set; }
+    
     [Required]
     public DateTime DataCriacao { get; set; }
 
