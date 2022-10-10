@@ -8,12 +8,20 @@ namespace MyHotel.Controllers;
 [Route("procedimentos")]
 public class ProcedimentoController : ControllerBase
 {
+    //Campo injetado no construtor
+    private ProcedimentoServico _procedimentoServico;
+
+    //Injetando o servico no construtor
+    public ProcedimentoController([FromServices] ProcedimentoServico servico)
+    {
+        _procedimentoServico = servico;
+    }
+
     [HttpPost]
     public void PostProcedimento([FromBody] ProcedimentoCriarAtualizarRequisicao novoProcedimento)
     {
         //Enviar os dados da Requisição para a classe de serviço
 
-        ProcedimentoServico servico = new();
-        servico.CriarProcedimento(novoProcedimento);
+        _procedimentoServico.CriarProcedimento(novoProcedimento);
     }
 }
