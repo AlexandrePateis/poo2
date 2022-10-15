@@ -18,10 +18,17 @@ public class ProcedimentoController : ControllerBase
     }
 
     [HttpPost]
-    public void PostProcedimento([FromBody] ProcedimentoCriarAtualizarRequisicao novoProcedimento)
+    public ProcedimentoResposta PostProcedimento
+    ([FromBody] ProcedimentoCriarAtualizarRequisicao novoProcedimento)
     {
         //Enviar os dados da Requisição para a classe de serviço
+        return _procedimentoServico.CriarProcedimento(novoProcedimento);
+    }
 
-        _procedimentoServico.CriarProcedimento(novoProcedimento);
+    [HttpGet]
+    public List<ProcedimentoResposta> GetProcedimentos()
+    {
+        //Pegar e rotornar a lista de procedimento serviço
+        return _procedimentoServico.ListarProcedimentos();
     }
 }
